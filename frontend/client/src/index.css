@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box;
+}
+
+#root{
+    min-height: 800px;
+    max-height: 1700px;
+    /*background-color: red;*/
+}
