@@ -1,9 +1,8 @@
 package com.registration.registration.Controllers;
 
-import com.registration.registration.Auth.AuthRequest;
-import com.registration.registration.Auth.AuthService;
+import com.registration.registration.Configuration.Auth.AuthRequest;
+import com.registration.registration.Configuration.Auth.AuthService;
 import com.registration.registration.Configuration.JwtService;
-import com.registration.registration.Configuration.WebClientConfig;
 import com.registration.registration.DTO.FriendRequest;
 import com.registration.registration.DTO.ProfileRequest;
 import com.registration.registration.DTO.UserRequest;
@@ -16,7 +15,6 @@ import com.registration.registration.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -25,7 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//@CrossOrigin(origins = "http://127.0.0.1:5173")
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/auth")

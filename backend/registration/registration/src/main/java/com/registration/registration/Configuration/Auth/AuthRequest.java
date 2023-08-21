@@ -1,4 +1,4 @@
-package com.registration.registration.Auth;
+package com.registration.registration.Configuration.Auth;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

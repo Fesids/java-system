@@ -57,32 +57,39 @@ export const CreateRequestPage = () =>{
     console.log(img)
 
     return(
-        <div>
-            <p>Create a new Request {dept_id}</p>
-            <form onSubmit={(e)=> handleCreateRequest(e)}>
-                <div className="form-group">
-                    <select onChange={(e)=> handleOnChange(e)} name="destination_dept_id" /*defaultValue={departments[0].id}*/>
-                        {departments.map(dept => <option value={dept.id}>{dept.department_name}</option>)}
-                    </select>
-                    {/*<Select options={departments} defaultValue={departments[0]} name="destination_dept_id" onChange={(e)=> handleOnChange(e)}></Select>*/}
+        <div className="create-request-container">
+            <div className="create-request">
 
-                </div>
-                <div className="form-group">
-                    <label htmlFor="subject" className="form-label mt-3">SUBJECT : </label>
-                    <input name="subject" className="form-control" id="subject" onChange={(e)=> handleOnChange(e)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="body" className="form-label mt-3">BODY : </label>
-                    <input name="body" className="form-control" id="body" onChange={(e)=> handleOnChange(e)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="image" className="form-label mt-3">Image</label>
-                    <input name="image" className="form-control" id="image" type="file" onChange={(e:any)=> handleSetImg(e.target.files[0])}></input>
+                <div className="header">
+                    <h3>Create a new Request</h3>
                 </div>
 
-                <input type="submit" value={"send"}></input>
-            </form>
+                <form onSubmit={(e)=> handleCreateRequest(e)}>
+                    <div className="form-group">
+                        <select onChange={(e)=> handleOnChange(e)} name="destination_dept_id" /*defaultValue={departments[0].id}*/>
+                            {departments.map(dept => <option value={dept.id}>{dept.department_name}</option>)}
+                        </select>
+                        {/*<Select options={departments} defaultValue={departments[0]} name="destination_dept_id" onChange={(e)=> handleOnChange(e)}></Select>*/}
+
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="subject" className="form-label mt-3">SUBJECT : </label>
+                        <input name="subject" className="form-control" id="subject" onChange={(e)=> handleOnChange(e)}></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="body" className="form-label mt-3">BODY : </label>
+                        <input name="body" className="form-control" id="body" onChange={(e)=> handleOnChange(e)}></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="image" className="form-label mt-3">Image</label>
+                        <input name="image" className="form-control" id="image" type="file" onChange={(e:any)=> handleSetImg(e.target.files[0])}></input>
+                    </div>
+
+                    <input type="submit" value={"send"} className="btn-submit"></input>
+                </form>
+            </div>
         </div>
+        
     )
 
 }

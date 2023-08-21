@@ -23,6 +23,8 @@ import { CreateRequestPage } from './Pages/CreateRequestPage'
 import { ChatIndexpage } from './Pages/ChatPages/Index'
 import { ChatDetailPage } from './Pages/ChatPages/ChatDetail'
 import { AllUsersPage } from './Pages/UserPages/AllUsersPage'
+import { AllConnectionPage } from './Pages/UserPages/AllConnections'
+import { ProfileDetailPage } from './Pages/UserPages/ProfileDetail'
 
 
 //axios.defaults.baseURL = "http://localhost:8080/"
@@ -55,12 +57,7 @@ const routes = createBrowserRouter([
       {
         path: "/departments",
         element: <DepartmentPage/>,
-        /*children:[
-          {
-            path: ":detail/:id",
-            element: <DepartmentDetail/>
-          }
-        ]*/
+       
       },
 
       //Site Type Description
@@ -107,6 +104,16 @@ const routes = createBrowserRouter([
       {
         path: "/chat/add",
         element: <AllUsersPage/>
+      },
+
+      {
+        path: "/chat/connections",
+        element: <AllConnectionPage/>
+      },
+
+      {
+        path: "/chat/connections/detail/:profileId",
+        element: <ProfileDetailPage/>
       }
 
       

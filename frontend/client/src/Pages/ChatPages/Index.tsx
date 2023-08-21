@@ -3,6 +3,8 @@ import { AppContext } from "../../Context/AppContext"
 import { IProfile } from "../../Interfaces/Profile";
 import { IFriend } from "../../Interfaces/Friend";
 import { Link } from "react-router-dom";
+import { IChat } from "../../Interfaces/Chat";
+import { Chat } from "../../Components/Chat/Chat";
 
 
 interface ConversationProps{
@@ -41,8 +43,15 @@ const Conversation = ({data, profile_id}:ConversationProps) =>{
 
 export const ChatIndexpage = () =>{
 
-    const {currentUser, getUserProfileByUserId} = useContext(AppContext);
+    const {currentUser, getUserProfileByUserId, getChatsByProfileId, currentUserProfile} = useContext(AppContext);
     const [userProfile, setUserProfile] = useState({} as IProfile);
+    const [chats, setChats] = useState([] as IChat[]);
+
+    let profileId = 0;
+
+    if(currentUserProfile){
+        profileId = currentUserProfile.id;
+    }
 
 
     // SET USER PROFILE
@@ -52,9 +61,17 @@ export const ChatIndexpage = () =>{
             user_id = currentUser.user_id;
         }
         getUserProfileByUserId(user_id).then(resp => setUserProfile(resp));
-    })
+    });
 
-    console.log(userProfile);
+    
+
+    useEffect(()=>{
+        if(currentUserProfile)
+        getChatsByProfileId(currentUserProfile?.id)
+        .then(resp => setChats(resp));
+        
+
+    })
 
     let friends_list = [] as Array<IFriend>
 
@@ -62,7 +79,8 @@ export const ChatIndexpage = () =>{
         friends_list = userProfile.friends
     }
 
-
+    console.log(currentUserProfile);
+    console.log(chats);
 
     return(
         <div className="chat-content-container">
@@ -85,30 +103,26 @@ export const ChatIndexpage = () =>{
 
                 <div className="friends-container">
                     <a href="" style={{color: "black", textDecoration: "none"}}>
-                        {
+                        {/*
 
                             friends_list.map((resp)=>(
                                 <Conversation data={resp} profile_id={1}/>
                             ))
-                        }
+                            */}
 
-                        {/*<div className="friends">
-                            <div className="pic">
-                                <img src="" alt=""></img>
-                            </div>
-                            <div className="name">
-                                <h5>Vitoria do Capao</h5>
-                                <p>How are you doing today</p>
-                            </div>
-                            <div className="time_new_msg">
-                                <p>7:30am</p>
-                                <div className="msg">0</div>
-                            </div>
-    </div>*/}
+                        {chats.length?chats.map(chat => <Chat data={chat} currentProfileId={profileId}/>): "No chats yet"}
+
+                     
 
                     </a>
 
                 </div>
+
+                <Link to={"connections"}><div className="float">
+                    <div className="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                </div></Link>
 
                 <div className="footer">
                     <Link to={"/chat/add"}><div>
@@ -130,7 +144,7 @@ export const ChatIndexpage = () =>{
                         </svg>
                     </div></Link>
                 
-                    <div>
+                    <Link to={"/"} replace><div>
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="26"
@@ -148,7 +162,7 @@ export const ChatIndexpage = () =>{
                             d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
                         />
                         </svg>
-                    </div>
+                    </div></Link>
                 
                     <div>
                         <svg
@@ -167,6 +181,11 @@ export const ChatIndexpage = () =>{
                         />
                         </svg>
                     </div>
+
+                   
+
+
+                    
                     </div>
                         
 

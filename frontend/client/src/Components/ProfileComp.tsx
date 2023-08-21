@@ -26,9 +26,12 @@ export const ProfileComp =({user_id}:ProfileCompProps)=>{
     const handleAddFriend = (e:any) =>{
 
         e.preventDefault();
-        if(currentUserProfile)
-        createConversation(currentUserProfile?.id, friend.id);
-        if(currentUserFriend)
+        let currentUserProfileId = 0;
+        if(currentUserProfile){
+            currentUserProfileId = currentUserProfile.id;
+        }
+        createConversation(currentUserProfileId, friend.id);
+        /*if(currentUserFriend)
         createConversation(profile.id, currentUserFriend?.id);
         /*let profileId = 0;
         let friendID = 0;

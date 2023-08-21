@@ -121,7 +121,7 @@ export const DepartmentDetail = () =>{
                 </div>
 
                 <div className="request-container">
-                    <div className="client-request-header">SENT REQUESTS</div>
+                    <div className="client-request-header">Sent Requests</div>
                     <div className="request-button-container bg-dark">
                         <button value={"sales"} onClick={handleSentRequestList} className="btn btn-dark">show</button>
                         <button className="btn btn-daek btn-request btn-link"><Link to={`/departments/${department.id}/request/new`} className="link">+ add request</Link></button>

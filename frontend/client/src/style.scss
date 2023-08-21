@@ -1,3 +1,7 @@
+.layout{
+    height: auto;
+}
+
 .link {
     text-decoration: none;
 }
@@ -55,7 +59,8 @@
     .create-user-form , .register-user-form{
         background-color: white;
         width: 40%;
-        padding: 15px 15px;
+        padding: 20px 35px;
+        border-radius: 15px;
         box-shadow: rgba(12, 14, 13, 0.1) 0px 8px 24px;
         
 
@@ -89,37 +94,6 @@
 
 
 
-
-
-.layout{
-    
-    height: auto;
-    width: 100%;
-    //background-color: aqua;
-
-    .navbar{
-        background-color: teal;
-        color: white;
-        
-        .container-fluid{
-            color: white;
-
-            a{
-                color: white;
-                text-decoration: none;
-            }
-        }
-    }
-
-    .content {
-        height: 100%;
-
-        .home{
-            display: flex;
-            flex-direction:column;
-        }
-    }
-}
 
 // POST STYLE
 
@@ -378,30 +352,51 @@
             word-break: break-all;
         }
 
-        /*.request-body{
-            
-            border: 2px solid black;
-            height: auto;
-            overflow: scroll;
-            max-height: 200px;
-            overflow-y: hidden;
-            overflow-x: hidden;
-            //min-height: 40px;
-            //height: auto;
-            //width: fit-content;
-            //overflow: auto;
-            line-height: 1em;
-            height: 2em;
-            word-break: break-all;
-            padding: 5px 5px;
-            //resize: both;
-            //object-fit: contain;
-            //overflow-x: hidden;
-        }*/
+        
 
     }
 }
 
+
+.create-request-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .body{
+        width: 85%;
+        padding: 20px 25px;
+        font-size: 18px;
+    }
+
+    .create-request{
+        width: 85%;
+        
+        form{
+            padding: 15px 20px;
+
+            .btn-submit{
+                width: 100%;
+                min-height: 30px;
+                background-color: slateblue;
+                color: white;
+                margin-top: 15px;
+                border: none;
+                border-radius: 8px;
+            }
+        }
+
+        .header{
+            padding: 15px 20px;
+           
+            margin-bottom: 15px;
+
+        }
+
+    }
+}
 
 
 
@@ -758,19 +753,6 @@ button{
 
 }
 
-/*.chat-box-received, .chat-box-sent{
-    width: 290px;
-    height: auto;
-    font-size: 14px;
-    background-color: slateblue;
-    color: white;
-    margin-right: auto;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    padding:10px 10px;
-    border-radius: 10px;
-}*/
 
 .chat-box-received{
     width: 290px;
@@ -843,6 +825,154 @@ button{
         .btn-input{
             float: right;
             margin-left: auto;
+        }
+    }
+}
+
+
+/// 
+    /// CONNECTIONS STYLE
+/// 
+
+.your-connections{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: slateblue;
+    
+
+    .your-connections-header{
+        margin-top: 15px;
+        color: white;
+    }
+}
+
+.connectionslist-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:40px 20px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 70%;
+    border-radius: 40px;
+    background-color: white;
+}
+
+.connection-container{
+    width: 100%;
+    height: 80px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0px 10px;
+
+    .name{
+        
+        margin-right: 50%;
+    }
+
+    .pic{
+        width: 50px;
+        height: 50px;
+        border: 1px solid black; 
+        border-radius: 50%;
+    }
+}
+
+.float{
+    background-color: slateblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    top: 340px;
+    bottom: 166px;
+    right: 485px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 3px #999;
+    opacity: 0.8;
+
+    .line{
+        width: 50%;
+        
+        height: 3px;
+        background-color: white;
+        margin-bottom: 3px;
+    }
+}
+
+///
+/// 
+    /// PROFILE STYLE 
+/// 
+/// 
+
+.profile-detail-container{
+
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    background-color: slateblue;
+    
+    
+    .profile-detail{
+        
+        background-color: white;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px 15px;
+        margin: 20px 25px;
+        border-radius: 10px;
+        .head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+           
+            padding: 35px 15px;
+            margin-top: 10px;
+            .name{
+        
+                margin-right: 50%;
+                font-size: 28px;
+                
+            }
+        
+            .pic{
+                width: 95px;
+                height: 95px;
+                border: 1px solid black; 
+                border-radius: 50%;
+            }
+        }
+
+        .buttons-container{
+            display: flex;
+            justify-content: space-between;
+            
+            padding: 15px 20px;
+            width: 80%;
+            margin-top: 15px;
+
+            .btn-outline-danger{
+                width: 20%;
+            }
         }
     }
 }

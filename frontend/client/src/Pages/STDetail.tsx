@@ -44,14 +44,16 @@ export const STDetail = () =>{
     
 
     return(
-        <div className="st-detail-container">
-            <div className="st-header">
-                <p>{siteDetail.body}</p>
-            
-                <h2>Are you interest on our services?</h2>
-            </div>
+        <div className="create-request-container">
+           <p className="body">
+                {siteDetail.body}
+            </p>
 
-            <div className="create-client-request-container">
+            <div className="create-request">
+                <div className="header">
+                    <h2>Are you interest on our services?</h2>
+                </div>
+
                 <form method="post" onSubmit={(e)=> handleOnSubmit(e)}>
                     <div className="form-group">
                         <label htmlFor="client_email" className="form-label mt-3">Email : </label>
@@ -66,7 +68,7 @@ export const STDetail = () =>{
                         <textarea name="body" className="form-control" id="body" onChange={(e)=> handleOnChange(e) }></textarea>
                     </div>
 
-                    <input type="submit" value={"send"} className="send-request-btn"></input>
+                    <input type="submit" value={"send"} className="btn-submit"></input>
                 </form>
             </div>
         </div>

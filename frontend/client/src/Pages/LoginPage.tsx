@@ -13,22 +13,9 @@ export const LoginPage = () =>{
 
     const {login} = useContext(AppContext);
 
-    const [teste, setTeste] = useState();
 
     const navigate = useNavigate();
 
-    useState(()=>{
-        const funcao = async () =>{
-            try{
-                const resp = await axios.get("http://localhost:8083/api/auth/testezin");
-                return resp.data
-            }catch(err){
-                throw new Error("merda")
-            }
-        }
-        
-        console.log(funcao())
-    })
 
     const handleChange = (e:any)=>{
         setUserLogin({...userLogin, [e.target.name]: e.target.value});
@@ -40,9 +27,7 @@ export const LoginPage = () =>{
             username: userLogin.email,
             password: userLogin.password
         }
-        /*login(e, login_body).then(
-            resp => {setUserbody(resp); /*navigate("../", {replace:true})}
-        );*/
+       
         login(e, login_body)
         .then(resp => setUserbody(resp));
 

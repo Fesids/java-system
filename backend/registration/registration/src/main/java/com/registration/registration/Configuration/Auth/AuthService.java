@@ -1,4 +1,4 @@
-package com.registration.registration.Auth;
+package com.registration.registration.Configuration.Auth;
 
 
 import com.registration.registration.Configuration.JwtService;

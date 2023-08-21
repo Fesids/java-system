@@ -64,10 +64,6 @@ public class ProfileServiceImpl implements ProfileService {
         var profile = profileRepository.findById(profileId).get();
 
         var friend =friendRepository.findById(friendId).get();
-        /*var fid = friend.getProfile().getId();
-        var other_profile = profileRepository.findById(fid).get();
-        var other_friend = friendRepository.findFriendByProfileId(profileId).get();*/
-
 
 
 
@@ -81,10 +77,7 @@ public class ProfileServiceImpl implements ProfileService {
         }*/
         profile.getFriends().add(friend);
 
-        /*var fid = friend.getProfile().getId();
-        var other_profile = profileRepository.findById(fid).get();
-        var other_friend = friendRepository.findFriendByProfileId(profileId).get();
-        other_profile.getFriends().add(other_friend);*/
+
 
         return profile;
 

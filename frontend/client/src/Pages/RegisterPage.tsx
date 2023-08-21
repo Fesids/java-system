@@ -26,10 +26,10 @@ export const RegisterPage = () =>{
         username: regUser.username,
         email: regUser.email,
         password: regUser.password
-        //uRole: UserRole.EXTERNAL_USER
+        
     }
 
-    console.log(regBody)
+   
 
 
     return(

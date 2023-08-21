@@ -10,6 +10,7 @@ import { IProfile } from "../Interfaces/Profile";
 import { IncomingMessage } from "http";
 import { IMessage } from "../Interfaces/Message";
 import { IFriend } from "../Interfaces/Friend";
+import { IChat } from "../Interfaces/Chat";
 
 interface AppContextProps{
 
@@ -50,7 +51,9 @@ interface AppContextProps{
     createConversation(profile_id:number, friend_id:number): Promise<IProfile>,
 
     getFriendByProfileId(profile_id:number): Promise<IFriend>;
-
+    getChatsByProfileId(profileId:number): Promise<IChat[]>;
+    createChat(firstId:number, secondId:number): Promise<IChat>;
+   
 }
 
 export const AppContext = createContext({} as AppContextProps);
@@ -105,7 +108,7 @@ export const AppContextProvider = ({children}:React.PropsWithChildren)=>{
         e.preventDefault()
         try{
             const resp = await axios.post("http://localhost:8083/api/auth/login", user);
-            //setUser(resp.data.body);
+            
             localStorage.setItem("currentuser", JSON.stringify(resp.data));
             setCurrentUser(resp.data.body);
             return resp.data
@@ -313,6 +316,26 @@ export const AppContextProvider = ({children}:React.PropsWithChildren)=>{
         }
     }
 
+    const createChat = async (firstId:number, secondId:number) =>{
+        try{
+            const resp = await axios.post(`http://localhost:8088/api/chat/new/firstId/${firstId}/secondId/${secondId}`);
+            return resp.data;
+        }catch(err){
+            throw new Error("Failed to create chat");
+        }
+    }
+
+    const getChatsByProfileId = async (profileId:number) =>{
+
+        try{
+            const resp = await axios.get("http://localhost:8088/api/chat/all/profile/"+profileId);
+            return resp.data;
+        }catch(err){
+            throw new Error("Failed to retrieve chats");
+        }
+
+    }
+
 
     return(
 
@@ -320,7 +343,8 @@ export const AppContextProvider = ({children}:React.PropsWithChildren)=>{
             getUsersByDeptId, searchUser, getAllSiteType, getSiteDetail, 
             createRequestClient, getAllClientRequest, getReceivedRequests, getClientRequestDetail,getRequestDetail,
             createRequest, deleteClientRequest, deleteRequest, updateDestIdAndSenderId, getSentRequests, currentUser, getUserProfileByUserId, getProfileDetail,
-            getSentMessages, getReceivedMessages, sentMessage, createConversation, getFriendByProfileId,getAllUsers, currentUserProfile, setCurrentUserProfile, currentUserFriend}}>
+            getSentMessages, getReceivedMessages, sentMessage, createConversation, getFriendByProfileId,getAllUsers, currentUserProfile, setCurrentUserProfile, currentUserFriend,
+            getChatsByProfileId, createChat}}>
             {children}
         </AppContext.Provider>
     )

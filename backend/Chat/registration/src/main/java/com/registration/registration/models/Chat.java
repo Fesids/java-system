@@ -1,6 +1,5 @@
 package com.registration.registration.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,43 +9,24 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Entity
-@Table(name = "profiles")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class Profile {
+@Table(name = "chats")
+public class Chat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long user_id;
-
-    private String name;
-
-    private String pic;
-
     @ManyToMany
     @JoinTable(
+            name = "chat_members",
+            joinColumns = @JoinColumn(name = "chat_id"),
+            inverseJoinColumns = @JoinColumn(name = "profile_id")
 
-            name="friends_profile",
-            joinColumns = @JoinColumn(name = "profile_id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
-    private Set<Friend> friends;
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private Set<Profile> members;
 
 }

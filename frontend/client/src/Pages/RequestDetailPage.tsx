@@ -11,14 +11,14 @@ import { IFriend } from "../Interfaces/Friend";
 export const RequesDetailPage = () =>{
 
     const {id, dept_name} = useParams();
-    const {getClientRequestDetail, getRequestDetail, updateDestIdAndSenderId, getDepartmentList,currentUser, getUserProfileByUserId, createConversation, getFriendByProfileId} = useContext(AppContext);
+    const {getClientRequestDetail, getRequestDetail, updateDestIdAndSenderId, getDepartmentList,currentUser, getUserProfileByUserId, createConversation, getFriendByProfileId, createChat, currentUserProfile} = useContext(AppContext);
 
     //const [clientRequest, setClientRequest] = useState({} as IRequestClient);
     const [request, setRequest] = useState({} as IRequest);
     const [departments, setDepartments] = useState([] as IDepartment[]);
-    const [currentUserProfile, setCurrentUserProfile] = useState({} as IProfile);
+    //const [currentUserProfile, setCurrentUserProfile] = useState({} as IProfile);
     const [requestUserProfile, setRequestUserProfile] = useState({} as IProfile);
-    const [requestFriend, setRequestFriend] = useState({} as IFriend);
+    
 
     const [showMore, setShowMore] = useState(false);
 
@@ -31,44 +31,35 @@ export const RequesDetailPage = () =>{
         getRequestDetail(cr_id).then(resp => setRequest(resp));
     });
 
+    useEffect(()=>{
+        let reqUserId = 0;
+        if(request){
+            reqUserId = request.user_sender_id;
+            
+        }
+        getUserProfileByUserId(reqUserId).then(resp => setRequestUserProfile(resp));
+    })
+
     // set departments
     useEffect(()=>{
         getDepartmentList().then(resp => setDepartments(resp));
     })
 
-    // CURRENT USER PROFILE
-    useEffect(()=>{
-        let cc = 0;
-        if(currentUser?.user_id){
-            cc = currentUser.user_id
-        }
-
-        getUserProfileByUserId(cc).then(resp => setCurrentUserProfile(resp));
-    });
-
-    // CURRENT REQUEST USER PROFILE AND FRIEND
-    useEffect(()=>{
-        let cc = request?.user_sender_id;
-        getUserProfileByUserId(cc).then(resp => setRequestUserProfile(resp));
-
-        if(requestUserProfile.id){
-            getFriendByProfileId(requestUserProfile.id).then(resp => setRequestFriend(resp));
-        }
-
-    })
-
-   
-    /*console.log(currentUserProfile);
-    console.log(requestUserProfile);
-    console.log(requestFriend)*/
-    console.log(request)
     
+    
+    console.log(currentUserProfile)
+    
+    const handleCreateChat = async (e:any) =>{
+        e.preventDefault();
+        let currentUserProfileId = 0;
+        if(currentUserProfile){
+            currentUserProfileId = currentUserProfile.id
+        }
+        createChat(currentUserProfileId, requestUserProfile.id);
 
-
-    const handleCreateChat = (e:any) =>{
-        e.preventDefault()
-        createConversation(currentUserProfile.id, requestFriend.id)
     }
+
+    
 
     const testeWindow = () =>{
         //window.open("teste.html", "", h)
